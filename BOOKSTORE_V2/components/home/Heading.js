@@ -4,7 +4,7 @@ import styles from './heading.styles'
 import {Ionicons} from '@expo/vector-icons'
 import { themeColors, themeSize } from '../../constants/theme'
 
-const Headings = () => {
+export default function Headings() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -12,10 +12,7 @@ const Headings = () => {
         <TouchableOpacity>
           <Ionicons name='ios-grid' size={24} color={themeColors.primary}></Ionicons>
         </TouchableOpacity>
-      </View>
-      
+      </View>      
     </View>
   )
 }
-
-export default Headings

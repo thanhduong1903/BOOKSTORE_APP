@@ -25,8 +25,6 @@ export default function CategoryMenu() {
         )}>
         </FlatList>
       </View>
-      
-     
     </SafeAreaView>
   )
 }

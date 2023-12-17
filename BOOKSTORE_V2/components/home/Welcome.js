@@ -5,7 +5,7 @@ import {themeColors, themeSize} from '../../constants/theme'
 import {Feather, Ionicons} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
-const Welcome = () => {
+export default function Welcome (){
   const navigation = useNavigation();
   return (
     <SafeAreaView>
@@ -27,5 +27,3 @@ const Welcome = () => {
     
   )
 }
-
-export default Welcome

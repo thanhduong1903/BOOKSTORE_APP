@@ -10,11 +10,11 @@ import ProductRaw from '../components/products/ProductRaw';
 import CategoryMenu from '../components/home/CategoryMenu';
 import BestSeller from '../components/products/BestSeller';
 import MarginBottom from '../constants/MarginBottom';
-import { themeColors, themeSize } from '../constants/theme';
+import { themeColors } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
-
-const Home = () => {
+// import {ViewPropTypes} from 'deprecated-react-native-prop-types'
+export default function Home() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style ={styles.container}>
@@ -44,5 +44,3 @@ const Home = () => {
     </SafeAreaView>
   )
 }
-
-export default Home
