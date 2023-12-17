@@ -1,4 +1,4 @@
-import { Animated ,View, Text, ScrollView, TouchableOpacity, Image, TextInput   } from 'react-native';
+import { Animated ,View, Text, TouchableOpacity, Image, TextInput   } from 'react-native';
 import React, {useRef, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
