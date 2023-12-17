@@ -35,9 +35,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
+        <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
         <Stack.Screen name='Login' component={Login} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Register' component={Register} options={{headerShown: false}}></Stack.Screen>  */}
+        <Stack.Screen name='Register' component={Register} options={{headerShown: false}}></Stack.Screen>
         <Stack.Screen name='Bottom Navigation' component={BottomTabNavigation} options={{headerShown: false}}></Stack.Screen>
         <Stack.Screen name='Cart' component={Cart} options={{headerShown: false}}></Stack.Screen>
         <Stack.Screen name='ProductDetails' component={ProductDetails} options={{headerShown: false}}></Stack.Screen>
