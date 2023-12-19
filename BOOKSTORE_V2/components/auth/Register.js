@@ -6,7 +6,6 @@ import { themeColors, themeSize } from '../../constants/theme';
 import { useNavigation } from '@react-navigation/native';
 import API_CONFIG from '../../config'
 import axios from 'axios';
-import { faUser } from '@fortawesome/free-solid-svg-icons'
 export default function Register() {
 
   const navigation = useNavigation();
