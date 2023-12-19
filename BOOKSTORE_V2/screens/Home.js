@@ -13,7 +13,6 @@ import MarginBottom from '../constants/MarginBottom';
 import { themeColors } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
-// import {ViewPropTypes} from 'deprecated-react-native-prop-types'
 export default function Home() {
   const navigation = useNavigation();
   return (
