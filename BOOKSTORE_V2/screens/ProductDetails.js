@@ -1,27 +1,61 @@
 import { Text, View, TouchableOpacity, Image, SafeAreaView } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useCallback, memo} from 'react'
 import styles from './productDetails.styles'
 import {Ionicons, SimpleLineIcons, MaterialCommunityIcons, Fontisto} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import {themeColors, themeSize} from '../constants/theme'
+import { ScrollView } from 'react-native-virtualized-view'
+import ReadMore from 'react-native-read-more-text'
 
-const ProductDetails = () => {
+const CountDisplay = memo(({ count }) => (
+  <Text style={styles.textRating}> {" "}{count}{" "} </Text>
+));
+
+const ReadMoreText = ({ text }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const renderTruncatedFooter = useCallback((handlePress) => (
+    <Text style={{color: 'blue', marginTop: 5}} onPress={() => {handlePress(); setIsExpanded(false);}}>
+      Read more
+    </Text>
+  ), []);
+
+  const renderRevealedFooter = useCallback((handlePress) => (
+    <Text style={{color:'blue' , marginTop: 5}} onPress={() => {handlePress(); setIsExpanded(true);}}>
+      Show less
+    </Text>
+  ), []);
+
+  return (
+    <ReadMore
+      numberOfLines={3}
+      renderTruncatedFooter={renderTruncatedFooter}
+      renderRevealedFooter={renderRevealedFooter}
+      onReadyStateChange={state => setIsExpanded(state === 'expanded')}
+    >     
+      <Text style={styles.descText}> {text} </Text>
+    </ReadMore>
+  );
+};
+
+const ProductDetails = ({ route }) => {
   const [count, setCount] = useState(1);
-
-  const increment = () =>{
-    setCount(count + 1);
-  }
-
-  const decrement = () =>{
-    if(count > 1){
-      setCount(count - 1);
-    }
-  }
+  const { item } = route.params;
+  const [book,setbook] = useState("");
+  React.useEffect(() => {setbook(item)}, [item])
+  
+  const increment = useCallback(() => {
+    setCount(count => count + 1);
+  }, []);
+  
+  const decrement = useCallback(() => {
+    setCount(count => (count > 1 ? count - 1 : count));
+  }, []);
 
   const navigation = useNavigation();
   return (
-    
-    <SafeAreaView style={styles.container}>
+    <ScrollView>
+        <SafeAreaView style={styles.container}>
       <View style={styles.upperRow}>
         <TouchableOpacity onPress={()=>navigation.goBack()}>
           <Ionicons name='chevron-back-circle' color={themeColors.primary} size={30}></Ionicons>
@@ -31,15 +65,15 @@ const ProductDetails = () => {
           <Ionicons name='heart' size={30} color={themeColors.primary}></Ionicons>
         </TouchableOpacity>
       </View>
-      <Image style={styles.image} source={{uri:"https://img.freepik.com/premium-vector/illustration-magic-spell-book-with-crystal-middle_295116-238.jpg?w=740"}}></Image>
+      <Image style={styles.image} source={{uri:book.image}}></Image>
       {/* Details */}
       <View style={styles.details}>
 
         {/* Top details */}
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Nhật ký chú bé nhút nhát</Text>
+          <Text style={styles.title}>{book.name}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>154.000 vnđ</Text>
+          <Text style={styles.price}>{parseInt(book.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
           </View>
         </View>
 
@@ -51,13 +85,13 @@ const ProductDetails = () => {
           </View>
 
           <View style={styles.rating}>
-          <TouchableOpacity onPress={()=>decrement()}>
+          <TouchableOpacity onPress={decrement}>
             <SimpleLineIcons name='minus' size={20}></SimpleLineIcons>
           </TouchableOpacity>
 
-          <Text style={styles.textRating}> {" "}{count}{" "} </Text>
+          <CountDisplay count={count} />
           
-          <TouchableOpacity onPress={()=>increment()}>
+          <TouchableOpacity onPress={increment}>
             <SimpleLineIcons name='plus' size={20}></SimpleLineIcons>
           </TouchableOpacity>
           </View>
@@ -66,7 +100,7 @@ const ProductDetails = () => {
         {/* Description */}
         <View style={styles.desciptionWrapper}>
           <Text style={styles.desciption}>Description</Text>
-          <Text style={styles.descText}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias saepe ipsum repellat, fuga facere quas atque culpa ullam quidem sequi possimus, officia error non cumque vel officiis veritatis, fugiat ducimus?</Text>
+          <ReadMoreText text={book.description} />
         </View>
 
         {/* Location */}
@@ -95,8 +129,9 @@ const ProductDetails = () => {
         </View> 
       </View>
     </SafeAreaView>
+    </ScrollView>
+    
   )
 }
 
 export default ProductDetails
-

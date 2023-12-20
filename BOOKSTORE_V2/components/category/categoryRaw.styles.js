@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
     height: '100%',
     marginEnd: 5,
     borderRadius: 15,
-    backgroundColor: themeColors.white,  
-    justifyContent: 'space-between',
+    backgroundColor: themeColors.black,  
   },
   imageContainer:{
     flex: 1,

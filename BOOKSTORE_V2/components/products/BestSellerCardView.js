@@ -1,22 +1,24 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import styles from './productCardView.styles'
 import {Ionicons} from '@expo/vector-icons'
 import { themeColors } from '../../constants/theme'
 import { useNavigation } from '@react-navigation/native'
 
-export default function BestSellerCardView() {
+export default function BestSellerCardView({item}) {
   const navigation = useNavigation();
+  const [book,setbook] = useState("");
+  React.useEffect(() => {setbook(item)}, [])
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails")}>
-      <View style={styles.container}>
+    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails", {item: book})}>
+     <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{uri: 'https://img.freepik.com/premium-vector/hand-drawn-world-book-day-illustration_23-2149304780.jpg?w=740'}}></Image>
+          <Image style={styles.image} source ={{uri:book.image}}></Image>
         </View>
         <View style={styles.details}>
-          <Text style={styles.title} numberOfLines={1}>Nhật ký chú bé nhút nhát</Text>
+          <Text style={styles.title} numberOfLines={1}>{book.name}</Text>
           <Text style={styles.supplier}numberOfLines={1}>Products</Text>
-          <Text style={styles.price}>154.000 vnđ</Text>
+          <Text style={styles.price}>{parseInt(book.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
         </View>
         <TouchableOpacity style={styles.addBtn}>
           <Ionicons name='add-circle' size={35} color={themeColors.primary}></Ionicons>

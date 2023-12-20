@@ -4,6 +4,7 @@ import React from 'react';
 import {useFonts} from 'expo-font';
 // import * as SplashScreen from 'expo-splash-screen'
 import { useCallback } from 'react';
+import {View, Text, StyleSheet,StatusBar} from 'react-native'
 import BottomTabNavigation from './navigation/BottomTabNavigation';
 import { Category, ProductDetails, Cart, Search } from './screens';
 import FirstLook from './components/auth/FirstLook';
@@ -33,7 +34,11 @@ export default function App() {
   }
 
   return (
+    
     <NavigationContainer>
+            <StatusBar 
+        barStyle = "light-content"
+      />
       <Stack.Navigator>
         <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
         <Stack.Screen name='Login' component={Login} options={{headerShown: false}}></Stack.Screen>

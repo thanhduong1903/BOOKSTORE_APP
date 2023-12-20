@@ -1,19 +1,33 @@
 import {SafeAreaView } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import AppBarWrapper from '../constants/AppBarWrapper'
 import { styles } from './category.styles'
 import CategoryItem from '../components/category/CategoryItem'
 import CategoryRaw from '../components/category/CategoryRaw'
 import { ScrollView } from 'react-native-virtualized-view'
-const Category = () => {
+import { useFocusEffect } from '@react-navigation/native';
+const Category = ({route}) => {
+  const [selectedCategoryID, setSelectedCategoryID] = useState('0');
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const { categoryId } = route.params;
+      setSelectedCategoryID(categoryId);
+    }, [route.params])
+  );
+
+  const handleCategorySelect = (id) => {
+    setSelectedCategoryID(id);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <AppBarWrapper title="CATEGORY"></AppBarWrapper>
-      <CategoryItem></CategoryItem>
-      
-      <ScrollView style={{height: '87%'}}>
-        <CategoryRaw></CategoryRaw>
+      <CategoryItem Id = {selectedCategoryID} onCategorySelect={handleCategorySelect}/>
+      <ScrollView style={{height:'70%'}} >  
+      {selectedCategoryID && <CategoryRaw categoryID={selectedCategoryID} />}
       </ScrollView>
+      
     </SafeAreaView>
   )
 }

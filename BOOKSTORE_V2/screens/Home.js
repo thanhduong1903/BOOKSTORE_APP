@@ -34,9 +34,10 @@ export default function Home() {
       <ScrollView>
         <Welcome></Welcome>
         <Carousel></Carousel>
-        <CategoryMenu></CategoryMenu>
+        <CategoryMenu/>
         <Headings></Headings>
         <ProductRaw></ProductRaw>
+        
         <BestSeller></BestSeller>
         <MarginBottom></MarginBottom>
       </ScrollView>

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   title:{
     paddingHorizontal: 5,
     fontFamily:'bold',
-    fontSize: themeSize.medium,
+    fontSize: themeSize.large,
 
   },
   priceWrapper:{
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   descText:{
     fontFamily: 'light',
-    fontSize: themeSize.xSmall,
+    fontSize: themeSize.medium,
     textAlign: 'justify',
     marginBottom: 10,
   },

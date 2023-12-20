@@ -14,16 +14,13 @@ export default function Login() {
   const handleLogin = async () => {
     try {
 
-      // const response = await axios.post("http://192.168.1.11:8000/user/login/", {
-      //   username: username,
-      //   password: password
-      // });
       const response = await axios.post(`${API_CONFIG.HOST}${API_CONFIG.LOGIN}`, {
         username: username,
         password: password
       });
   
       if (response.data.status === 'success') {
+        console.log(response.data.message);
         navigation.navigate('Bottom Navigation', {screen: "Home"});
       } else if (response.data.status === 'error') {      
         Alert.alert(response.data.message);
@@ -69,7 +66,7 @@ export default function Login() {
         </View>      
         <View style={styles.bottomView}>
 
-          <TouchableOpacity onPress={handleLogin}>
+          <TouchableOpacity onPress={navigation.navigate('Bottom Navigation', {screen: "Home"})}>
             <View style={styles.signInStyle}>
               <Text style={styles.signInStyleText}>Sign-in</Text>
             </View>  

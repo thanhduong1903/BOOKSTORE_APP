@@ -3,7 +3,7 @@ import { themeColors, themeSize } from "../../constants/theme";
 
 export const styles = StyleSheet.create({
   container:{
-    width: 192,
+    width: "65%",
     height: 280,
     marginEnd: 5,
     borderRadius: 15,
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   imageContainer:{
     flex: 1,
-    width: 181,
+    width: '94%',
     margin: 5,
     borderBottomWidth: 1,
     borderColor: themeColors.black,
