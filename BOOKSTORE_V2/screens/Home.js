@@ -13,17 +13,26 @@ import MarginBottom from '../constants/MarginBottom';
 import { themeColors } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
+import { useSelector } from 'react-redux'; 
+import { getTotalQuantity } from '../Redux/CartSlice'
+import { useDispatch } from 'react-redux' 
+
 export default function Home() {
+  const dispatch = useDispatch(); 
   const navigation = useNavigation();
+  const cartItems = useSelector(state => state.cart.items); 
+  // Tính tổng số lượng sản phẩm trong giỏ hàng
+  const totalQuantity = useSelector(getTotalQuantity);
   return (
+    
     <SafeAreaView style ={styles.container}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons color={'transparent'} name='location-outline' size={24}></Ionicons>
-          <Text style={styles.locationText}>BOOKS SHOP </Text>
+          <Text style={styles.locationText}> BOOKS SHOP </Text>
           <View style={styles.flexEnd}>
             <View style={styles.cartCount}>
-              <Text style={styles.cartNum}>3</Text>
+               <Text style={styles.cartNum}>{totalQuantity}</Text> 
             </View>
             <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
               <Fontisto color={themeColors.primary} name='shopping-bag' size={24}></Fontisto>
@@ -36,10 +45,9 @@ export default function Home() {
         <Carousel></Carousel>
         <CategoryMenu/>
         <Headings></Headings>
-        <ProductRaw></ProductRaw>
-        
-        <BestSeller></BestSeller>
-        <MarginBottom></MarginBottom>
+        <ProductRaw/>
+        <BestSeller/>
+        <MarginBottom/>
       </ScrollView>
     </SafeAreaView>
   )
