@@ -6,31 +6,61 @@ import styles from './login.styles';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import API_CONFIG from '../../config'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../Redux/CartSlice';
 export default function Login() {        
   const navigation = useNavigation();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const dispatch = useDispatch(); 
+const handleGetCart = async () => {
+  try {
+      const response = await axios.get(`${API_CONFIG.HOST}${API_CONFIG.GETCART}`);
+      if (response.data.status === 'success') {
+          const cart = response.data.cart;
+          if (typeof cart === 'object' && cart !== null) {
+              Object.values(cart).forEach(item => {
+                  dispatch(addToCart(item));
+              });
+              console.log(response.data.message);
+          } else {
+              console.log('Cart is not an object');
+          }
+      } else if (response.data.status === 'error') {      
+          console.log(response.data.message);
+      }
+  } catch (error) {
+      console.error(error);
+  }
+};
+
+
 
   const handleLogin = async () => {
     try {
+        const url = `${API_CONFIG.HOST}${API_CONFIG.LOGIN}`;
+        const response = await axios.post(url, {
+            username: username,
+            password: password
+        });
 
-      const response = await axios.post(`${API_CONFIG.HOST}${API_CONFIG.LOGIN}`, {
-        username: username,
-        password: password
-      });
-  
-      if (response.data.status === 'success') {
-        console.log(response.data.message);
-        navigation.navigate('Bottom Navigation', {screen: "Home"});
-      } else if (response.data.status === 'error') {      
-        Alert.alert(response.data.message);
-        console.log(response.data.message);
-      }
+        if (response.data.status === 'success') {
+          AsyncStorage.setItem('csrftoken', response.data.csrfToken);
+          AsyncStorage.setItem('username', username);
+          AsyncStorage.setItem('password', password);
+          handleGetCart()
+          navigation.navigate('Bottom Navigation', {screen: "Home"});
+          console.log(response.data.message);
+        }else if (response.data.status === 'error') {      
+            Alert.alert(response.data.message);
+            console.log(response.data.message);
+        }
     } catch (error) {
-      // handle error here
-      console.log(error);
+        console.error(error);
     }
-  };
+};
+
 
   return (
     <SafeAreaView>
@@ -66,7 +96,7 @@ export default function Login() {
         </View>      
         <View style={styles.bottomView}>
 
-          <TouchableOpacity onPress={navigation.navigate('Bottom Navigation', {screen: "Home"})}>
+          <TouchableOpacity onPress={handleLogin}>
             <View style={styles.signInStyle}>
               <Text style={styles.signInStyleText}>Sign-in</Text>
             </View>  

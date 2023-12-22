@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { addToCart } from '../../Redux/CartSlice'
 import axios from 'axios'; 
 import API_CONFIG from '../../config'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function BestSellerCardView({item}) {
   const navigation = useNavigation();
   const [book,setbook] = useState("");
@@ -17,14 +18,27 @@ export default function BestSellerCardView({item}) {
 
   const handleAddToCart = async (book) => {
     try {
-        const response = await axios.post(`${API_CONFIG.HOST}${API_CONFIG.ADDTOCART}`, {
-            id: book.id,
-            quantity: 1
-        });
+      const url = `${API_CONFIG.HOST}${API_CONFIG.ADDTOCART}`;
+      console.log(url);
+      const response = await axios.post(url, {
+          id: book.id,
+          quantity: 1
+      },{headers: {
+        'X-CSRFToken': await AsyncStorage.getItem('csrftoken'),
+        'Content-Type': 'application/json'
+      }});
         
         if (response.data.status=='success') {
             console.log(response.data.message);
-            dispatch(addToCart(book)); // Cập nhật giỏ hàng trên ứng dụng
+            const bookToAdd = {
+              book: book,
+              price: book.price,
+              pricesale: book.pricesale,
+              quantity: 1,
+              total_price: book.pricesale > 0 ? book.pricesale : book.price
+            };
+            dispatch(addToCart(bookToAdd)); // Cập nhật giỏ hàng trên ứng dụng
+            
         } else {
             console.log('Failed to add item to cart');
         }

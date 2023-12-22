@@ -50,6 +50,8 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.white,
     marginHorizontal: 10,
     alignItems:'center',
+    justifyContent:'space-around',
+    flexDirection:'row'
   },
   edit:{
     flexDirection: 'row',

@@ -15,16 +15,12 @@ import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
 import { useSelector } from 'react-redux'; 
 import { getTotalQuantity } from '../Redux/CartSlice'
-import { useDispatch } from 'react-redux' 
 
 export default function Home() {
-  const dispatch = useDispatch(); 
   const navigation = useNavigation();
-  const cartItems = useSelector(state => state.cart.items); 
-  // Tính tổng số lượng sản phẩm trong giỏ hàng
-  const totalQuantity = useSelector(getTotalQuantity);
+  const totalQuantity = useSelector((state) => getTotalQuantity(state));
+
   return (
-    
     <SafeAreaView style ={styles.container}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>

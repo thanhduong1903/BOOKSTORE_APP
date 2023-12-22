@@ -3,9 +3,33 @@ import React from 'react'
 import AppBarWraper from '../constants/AppBarWrapper';
 import { styles } from './profile.styles';
 import {AntDesign} from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../constants/theme';
-
+import axios from 'axios';
+import API_CONFIG from '../config'
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../Redux/CartSlice';
 const Profile = () => {
+  const navigation = useNavigation();
+
+  const dispatch = useDispatch(); 
+  const handleLogOut = async () => {
+    try {
+        const url = `${API_CONFIG.HOST}${API_CONFIG.LOGOUT}`;
+        const response = await axios.post(url);
+
+        if (response.data.status === 'success') {
+          dispatch(clearCart());
+          navigation.navigate('First Look');
+          console.log(response.data.message);
+        }else if (response.data.status === 'error') {      
+            console.log(response.data.message);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
   return (
     <SafeAreaView style={styles.container}>
       <AppBarWraper title="PROFILE"></AppBarWraper>
@@ -39,10 +63,16 @@ const Profile = () => {
 
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity>
+      <TouchableOpacity>
           <View style={styles.edit}>
             <Text  style={styles.editText}>Edit</Text>
             <AntDesign name='edit' color={themeColors.primary} size={22}></AntDesign>
+          </View>          
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogOut}>
+          <View style={styles.edit}>
+            <Text  style={styles.editText}>LogOut</Text>
+            <AntDesign name='logout' color={themeColors.primary} size={22}></AntDesign>
           </View>          
         </TouchableOpacity>
       </View>

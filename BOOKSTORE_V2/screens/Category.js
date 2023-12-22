@@ -7,14 +7,17 @@ import CategoryRaw from '../components/category/CategoryRaw'
 import { ScrollView } from 'react-native-virtualized-view'
 import { useFocusEffect } from '@react-navigation/native';
 const Category = ({route}) => {
-  const [selectedCategoryID, setSelectedCategoryID] = useState('0');
+  const [selectedCategoryID, setSelectedCategoryID] = useState('1');
 
   useFocusEffect(
     React.useCallback(() => {
-      const { categoryId } = route.params;
-      setSelectedCategoryID(categoryId);
+      if (route.params) {
+        const { categoryId } = route.params;
+        setSelectedCategoryID(categoryId);
+      }
     }, [route.params])
   );
+
 
   const handleCategorySelect = (id) => {
     setSelectedCategoryID(id);
