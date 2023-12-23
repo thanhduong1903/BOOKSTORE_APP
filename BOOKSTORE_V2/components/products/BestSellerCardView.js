@@ -19,7 +19,6 @@ export default function BestSellerCardView({item}) {
   const handleAddToCart = async (book) => {
     try {
       const url = `${API_CONFIG.HOST}${API_CONFIG.ADDTOCART}`;
-      console.log(url);
       const response = await axios.post(url, {
           id: book.id,
           quantity: 1

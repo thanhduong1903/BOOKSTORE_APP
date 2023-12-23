@@ -9,6 +9,8 @@ import axios from 'axios';
 import API_CONFIG from '../config'
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../Redux/CartSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Profile = () => {
   const navigation = useNavigation();
 
@@ -17,11 +19,12 @@ const Profile = () => {
     try {
         const url = `${API_CONFIG.HOST}${API_CONFIG.LOGOUT}`;
         const response = await axios.post(url);
-
-        if (response.data.status === 'success') {
+        if (response.data.status === 'success') {      
           dispatch(clearCart());
           navigation.navigate('First Look');
           console.log(response.data.message);
+          await AsyncStorage.removeItem('username');
+          await AsyncStorage.removeItem('password');
         }else if (response.data.status === 'error') {      
             console.log(response.data.message);
         }

@@ -8,9 +8,11 @@
 
     // Store
     CATEGORIES:'store/categories/',
+    GETBOOK:'store/book/',
     NEWBOOKS:'store/new-books/',
     BESTSELERBOOK:'store/best-seller-books/',
     BOOKBYCATEGORY:'store/books-by-category/',
+    SEARCH:'/search/?search=',
 
     //Cart
     ADDTOCART:'cart/add/',

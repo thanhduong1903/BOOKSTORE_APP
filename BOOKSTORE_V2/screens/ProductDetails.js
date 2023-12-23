@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native'
 import {themeColors, themeSize} from '../constants/theme'
 import { ScrollView } from 'react-native-virtualized-view'
 import ReadMore from 'react-native-read-more-text'
+import axios from 'axios';
+import API_CONFIG from '../config'
 
 const CountDisplay = memo(({ count }) => (
   <Text style={styles.textRating}> {" "}{count}{" "} </Text>
@@ -39,19 +41,34 @@ const ReadMoreText = ({ text }) => {
 };
 
 const ProductDetails = ({ route }) => {
+
   const [count, setCount] = useState(1);
   const { item } = route.params;
   const [book,setbook] = useState("");
-  React.useEffect(() => {setbook(item)}, [item])
-  
+
+
+  const handleGetBook = async () => {
+    try {
+
+      const url = `${API_CONFIG.HOST}${API_CONFIG.GETBOOK}${item.id}/`;
+      const response = await axios.get(url,{
+      });
+      if (response.data.status === 'success') {
+        setbook(response.data.book)
+      } else if (response.data.status === 'error') {
+        console.log('Failed get book');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  React.useEffect(() => {handleGetBook()}, [])
   const increment = useCallback(() => {
     setCount(count => count + 1);
   }, []);
-  
   const decrement = useCallback(() => {
     setCount(count => (count > 1 ? count - 1 : count));
   }, []);
-
   const navigation = useNavigation();
   return (
     <ScrollView>

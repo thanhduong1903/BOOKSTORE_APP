@@ -10,7 +10,7 @@ export default function CategoryRaw({categoryID}) {
   const [products,setProduct] = React.useState('')
   const handleBookByCategory = async () => {
     try {
-      const url = `${API_CONFIG.HOST}${API_CONFIG.BOOKBYCATEGORY}${categoryID}`;
+      const url = `${API_CONFIG.HOST}${API_CONFIG.BOOKBYCATEGORY}${categoryID}/`;
       console.log(url);
       const response = await axios.get(url); 
 

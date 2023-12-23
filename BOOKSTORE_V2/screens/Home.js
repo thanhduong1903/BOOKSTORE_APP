@@ -16,10 +16,18 @@ import { ScrollView } from 'react-native-virtualized-view'
 import { useSelector } from 'react-redux'; 
 import { getTotalQuantity } from '../Redux/CartSlice'
 
+const CartCount = React.memo(() => {
+  const totalQuantity = useSelector(getTotalQuantity);
+
+  return (
+    <View style={styles.cartCount}>
+      <Text style={styles.cartNum}>{totalQuantity}</Text> 
+    </View>
+  );
+});
+
 export default function Home() {
   const navigation = useNavigation();
-  const totalQuantity = useSelector((state) => getTotalQuantity(state));
-
   return (
     <SafeAreaView style ={styles.container}>
       <View style={styles.appBarWrapper}>
@@ -27,9 +35,7 @@ export default function Home() {
           <Ionicons color={'transparent'} name='location-outline' size={24}></Ionicons>
           <Text style={styles.locationText}> BOOKS SHOP </Text>
           <View style={styles.flexEnd}>
-            <View style={styles.cartCount}>
-               <Text style={styles.cartNum}>{totalQuantity}</Text> 
-            </View>
+          <CartCount />
             <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
               <Fontisto color={themeColors.primary} name='shopping-bag' size={24}></Fontisto>
             </TouchableOpacity>            
