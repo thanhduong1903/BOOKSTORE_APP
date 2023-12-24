@@ -1,8 +1,9 @@
 import { Switch ,View, Text, ScrollView, TouchableOpacity, Image, TextInput ,SafeAreaView ,Alert } from 'react-native';
 import React, {useState} from 'react';
-import {FontAwesome, Ionicons} from '@expo/vector-icons'
-import styles from './register.styles';
+import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {styles } from './register.styles';
 import { themeColors, themeSize } from '../../constants/theme';
+import { SelectList } from 'react-native-dropdown-select-list';
 import { useNavigation } from '@react-navigation/native';
 import API_CONFIG from '../../config'
 import axios from 'axios';
@@ -50,7 +51,10 @@ export default function Register() {
       console.error("Error from API: ", error.response.data);
     }
 };
-
+  const[district, setDisttrict] = useState("");
+  const[city, setCity] = useState("");
+  const districtData = [{key:'Q1', value:'Quận 1'}, {key:'Q2', value:'Quận 2'}, {key:'Q3', value:'Quận 3'}, {key:'BT', value:'Bình Tân'}, {key:'TB', value:'Tân Bình'}]
+  const cityData = [{key:'hcm', value:'Hồ Chí Minh'},{key:'st', value:'Sóc Trăng'}, {key:'bd', value:'Bình Dương'}, {key:'tn', value:'Tây Ninh'}]
   return (
     <SafeAreaView>
       <ScrollView>
@@ -93,7 +97,7 @@ export default function Register() {
              ></TextInput>
           </View>   
 
-          {/* <View style={styles.inputStyle}>
+          <View style={styles.inputStyle}>
             <Ionicons style={styles.inputStyleIcon} name='phone-portrait-outline' size={20}></Ionicons>
             <TextInput style={styles.inputStyleText} placeholder='Enter your phone number'></TextInput>
           </View> 
@@ -101,7 +105,23 @@ export default function Register() {
           <View style={styles.inputStyle}>
             <Ionicons style={styles.inputStyleIcon} name='location-outline' size={20}></Ionicons>
             <TextInput style={styles.inputStyleText} placeholder='Enter your address'></TextInput>
-          </View>  */}
+          </View> 
+
+          <View style={styles.inputStyle}>
+            <Ionicons style={styles.inputStyleIcon} name='ios-location-outline' size={20}></Ionicons>
+            <View style={styles.inputStyleText}>
+              <SelectList   setSelected={setDisttrict} data={districtData} placeholder='Select your disttrict' defaultOption={{key:'Q1', value:'Quận 1'}}></SelectList>
+            </View>
+            
+          </View>
+
+          <View style={styles.inputStyle}>
+            <MaterialCommunityIcons style={styles.inputStyleIcon} name='city-variant-outline' size={20}></MaterialCommunityIcons>
+            <View style={styles.inputStyleText}>
+              <SelectList style={styles.inputStyleText}  setSelected={setCity} data={cityData} placeholder='Select your disttrict' defaultOption={{key:'hcm', value:'Hồ Chí Minh'}}></SelectList>
+            </View>
+            
+          </View>
 
           <View style={styles.inputStyle}>
             <Ionicons style={styles.inputStyleIcon} name='mail-outline' size={20}></Ionicons>

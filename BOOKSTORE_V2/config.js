@@ -1,6 +1,6 @@
 
  export default  API_CONFIG = {
-    HOST: 'http://192.168.1.7:8000/', // Thay thế bằng địa chỉ host của API 
+    HOST: 'http://172.31.98.169:8000/', // Thay thế bằng địa chỉ host của API 
     
     LOGIN: 'user/login/', 
     LOGOUT:'user/logout/',

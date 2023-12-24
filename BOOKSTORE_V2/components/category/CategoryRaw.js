@@ -1,6 +1,7 @@
 import { View,FlatList,Text } from 'react-native'
 import React from 'react';
 import styles from './categoryRaw.styles';
+import {Ionicons} from '@expo/vector-icons';
 import CategoryView from './CategoryView';
 import axios from 'axios';
 import API_CONFIG from '../../config'
@@ -34,8 +35,9 @@ export default function CategoryRaw({categoryID}) {
       <FlatList data={products} renderItem={({item})=><CategoryView item ={item}/>} numColumns={2} >
       </FlatList>
     ) : (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 70, color:'red',textAlign: 'center' }}>Không có sản phẩm</Text>
+      <View style={styles.textNotificate}>
+        <Ionicons style={styles.iconWarn} name='notifications-outline'></Ionicons>
+        <Text style={styles.text}>SẢN PHẨM ĐANG ĐƯỢC CẬP NHẬT...</Text>
       </View>
     )}
   </View>  

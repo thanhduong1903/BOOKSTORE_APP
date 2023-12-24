@@ -24,6 +24,7 @@ const CartCount = React.memo(() => {
       <Text style={styles.cartNum}>{totalQuantity}</Text> 
     </View>
   );
+  
 });
 
 export default function Home() {

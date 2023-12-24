@@ -9,11 +9,14 @@ export const CartSlice = createSlice({
       const book = action.payload;
       const index = state.items.findIndex(item => item.book.id === book.book.id)
       if (index >= 0) {
+        
         state.items[index].quantity += Number(book.quantity)
-        state.items[index].total_price = Number(state.items[index].quantity *  state.items[index].pricesale> 0 ? state.items[index].pricesale : state.items[index].price)
-
+        console.log(state.items[index].quantity)
+        state.items[index].total_price = Number( state.items[index].pricesale> 0 ? state.items[index].quantity * state.items[index].pricesale : state.items[index].quantity * state.items[index].price)
+        console.log(state.items[index].total_price)
         state.total +=  state.items[index].total_price;
       } else {
+        console.log('push -------------------')
         state.items.push({
           book: book.book,
           price: Number(book.price),

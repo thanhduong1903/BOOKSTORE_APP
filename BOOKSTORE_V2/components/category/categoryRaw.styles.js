@@ -3,48 +3,32 @@ import {themeColors, themeSize} from '../../constants/theme'
 
 const styles = StyleSheet.create({
   container:{
+    flex: 1,
     width: '100%',
     height: '100%',
     marginEnd: 5,
     borderRadius: 15,
-    backgroundColor: themeColors.black,  
-  },
-  imageContainer:{
+    backgroundColor: themeColors.white,  
+  },  
+  textNotificate:{
     flex: 1,
-    width: 170,
-    marginLeft: 5,
-    marginRight: 5,
-    borderBottomWidth: 1,
-    borderColor: themeColors.black,
-    overflow:'hidden',
-  },
-  image:{
-    aspectRatio: 1,
-    resizeMode:'cover',    
+    height: '100%',
+    backgroundColor: themeColors.secondary,
+    margin: 13,
+    padding: 10,
     borderRadius: 10,
+    alignItems: 'center',
   },
-  details:{
-    padding: 12,
-  },
-  title:{
+  text:{
+    color: themeColors.primary,
+    fontSize: 40,
+    textAlign: 'center',
     fontFamily: 'bold',
-    fontSize: themeSize.medium,
-    marginBottom: 2,
   },
-  supplier:{
-    fontFamily: 'regular',
-    fontSize: themeSize.xSmall,
-    marginBottom: 2,
-  },
-  price:{
-    fontFamily: 'bold',
-    fontSize: themeSize.small2,
-    marginBottom: 2,
-  },
-  addBtn:{
-    position: 'absolute',
-    bottom: 11,
-    right: 7,
+  iconWarn:{
+    color: themeColors.primary,
+    fontSize: 60,
+    margin: 10,
   }
   
 });
