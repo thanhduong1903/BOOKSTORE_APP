@@ -48,8 +48,8 @@ export default function FirstLook() {
     const user = await AsyncStorage.getItem('username');
     if (user) {
       // handleGetCart()
-      // navigation.navigate('Login')
-      navigation.navigate('Bottom Navigation', { screen: "Home" });
+      navigation.navigate('Login')
+      // navigation.navigate('Bottom Navigation', { screen: "Home" });
     }
     else {
       navigation.navigate('Login')

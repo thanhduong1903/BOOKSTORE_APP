@@ -11,8 +11,10 @@ import FirstLook from './components/auth/FirstLook';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Order from './screens/Order';
+import EditProfile from'./screens/EditProfile'
 import { Provider } from 'react-redux';
 import Store from './Redux/Store';
+import PaymentScreen from './components/order/Payment';
 export const Stack = createNativeStackNavigator();
 export default function App() {
   const [fontsLoaded] =  useFonts({
@@ -33,7 +35,6 @@ export default function App() {
   if(!fontsLoaded){
     return null;
   }
-
   return (
     <Provider store={Store}>
       <NavigationContainer>
@@ -50,6 +51,8 @@ export default function App() {
           <Stack.Screen name='Order' component={Order} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='Category' component={Category} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='Search' component={Search} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='EditProfile' component={EditProfile} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='PaymentScreen' component={PaymentScreen} options={{headerShown: false}}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

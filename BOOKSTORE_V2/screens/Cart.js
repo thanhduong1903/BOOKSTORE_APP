@@ -31,7 +31,7 @@ export default function Cart() {
       <AppBarWrapper title = "CART"></AppBarWrapper>
       
       <ScrollView style={{height: '85%'}}>
-        <CartItemRaw></CartItemRaw>
+        <CartItemRaw/>
       </ScrollView>  
       <View style={styles.totalContainer}>
 

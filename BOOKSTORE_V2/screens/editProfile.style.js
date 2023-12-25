@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   row:{
     flexDirection: 'row',
     marginVertical: 10,
+    alignItems: 'center',
   },
   header:{
     flex: 1,
@@ -35,12 +36,12 @@ export const styles = StyleSheet.create({
     color: themeColors.primary,
   },
   body:{
-    flex: 2,
+    flex: 1,
     width: '95%',
     marginHorizontal: 10,
     marginVertical: 10,
     marginLeft: 30,
-    backgroundColor: themeColors.white,
+    
   },
   text:{
     width: 120,
@@ -48,10 +49,10 @@ export const styles = StyleSheet.create({
   footer:{
     flex: 1,
     width: '95%',
-    // backgroundColor: themeColors.black,
+    backgroundColor: themeColors.white,
     marginHorizontal: 10,
     alignItems:'center',
-    justifyContent:'center',
+    justifyContent:"center",
     flexDirection:'row'
   },
   edit:{
@@ -63,12 +64,55 @@ export const styles = StyleSheet.create({
     borderColor: themeColors.primary,
     justifyContent: 'center',
     alignItems: "center",
-    marginHorizontal: 10,
-    marginBottom: 100,
   },
   editText:{
     color: themeColors.primary,
     marginRight: 5,
   },
-
+  inputStyle:{
+    flexDirection:'row',
+    borderWidth: 1,
+    borderRadius: themeSize.small1,
+    width: '90%',
+    height: 50,
+    alignItems: "center",
+    borderColor: themeColors.primary,
+    marginTop: 15,
+  },
+  inputStyleIcon:{
+    margin: 8,
+    color: themeColors.primary,
+  },
+  inputStyleText:{
+    fontFamily: 'regular',
+    fontWeight: 'bold',
+    color: themeColors.primary,
+    fontSize: themeSize.medium,
+    width: '55%',
+    paddingHorizontal: 10,
+  }, 
+  
+  dropdown: {
+    margin: 0,
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
 });

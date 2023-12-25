@@ -37,8 +37,6 @@ export default function Login() {
     }
   };
 
-
-
   const handleLogin = async () => {
     try {
       const url = `${API_CONFIG.HOST}${API_CONFIG.LOGIN}`;
@@ -48,8 +46,8 @@ export default function Login() {
       });
 
       if (response.data.status === 'success') {
+        
         AsyncStorage.setItem('csrftoken', response.data.csrfToken);
-
         AsyncStorage.setItem('username', username);
         AsyncStorage.setItem('password', password);
 
@@ -81,7 +79,7 @@ export default function Login() {
             <FontAwesome style={styles.inputStyleIcon} name='user-o' size={20}></FontAwesome>
             <TextInput
               style={styles.inputStyleText}
-              placeholder='User name'
+              placeholder='Username'
               onChangeText={text => setUsername(text)}
               value={username}
             ></TextInput>

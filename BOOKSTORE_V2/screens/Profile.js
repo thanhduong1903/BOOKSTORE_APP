@@ -23,8 +23,11 @@ const Profile = () => {
           dispatch(clearCart());
           navigation.navigate('First Look');
           console.log(response.data.message);
+
+          await AsyncStorage.removeItem('csrftoken');
           await AsyncStorage.removeItem('username');
           await AsyncStorage.removeItem('password');
+          
         }else if (response.data.status === 'error') {      
             console.log(response.data.message);
         }
@@ -44,29 +47,34 @@ const Profile = () => {
       </View>
       <View style={styles.body}>
         <View style={styles.row}>
-          <Text style={styles.text}>Name: </Text>
-          <TextInput style={styles.input} value='Lý Thanh Dương'></TextInput>
+          <Text style={styles.text}>First name: </Text>
+          <Text style={styles.input}>Thanh Dương</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.text}>Day of birth: </Text>
-          <TextInput style={styles.input} value='19/03/2001'></TextInput>
+          <Text style={styles.text}>Last name: </Text>
+          <Text style={styles.input}>Lý</Text>
+        </View>  
+        <View style={styles.row}>
+          <Text style={styles.text}>Phone </Text>
+          <Text style={styles.input}>0785643365</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.text}>Mail: </Text>
+          <Text style={styles.input}>thanhduong1903@gmail.com</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Address: </Text>
-          <TextInput style={styles.input} value='20 Thân Nhân Trung'></TextInput>
+          <Text style={styles.input}>20 Thân Nhân Trung</Text>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.text}>ID: </Text>
-          <TextInput style={styles.input} value='1233456678910'></TextInput>
-        </View>
+        
         <View style={styles.row}>
           <Text style={styles.text}>Password: </Text>
-          <TextInput secureTextEntry style={styles.input} value='456678'></TextInput>
+          <Text secureTextEntry style={styles.input}>*****</Text>
         </View>
 
       </View>
       <View style={styles.footer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=> navigation.navigate('EditProfile')}>
           <View style={styles.edit}>
             <Text  style={styles.editText}>Edit</Text>
             <AntDesign name='edit' color={themeColors.primary} size={22}></AntDesign>
