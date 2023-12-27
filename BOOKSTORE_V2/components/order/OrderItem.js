@@ -3,21 +3,21 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import styles from './orderItem.styles'
 
-export default function OrderItem() {
+export default function OrderItem({item}) {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails", {item: item.book})}>
       <View style={styles.container}>        
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{uri: 'https://img.freepik.com/premium-vector/books-with-flowers_654516-12.jpg?w=826'}}></Image>
+          <Image style={styles.image} source={{uri: item.book.image}}></Image>
         </View>
         <View style={styles.details}>          
-          <Text style={styles.title} numberOfLines={1}>Nhật ký chú bé nhút nhát</Text>
+          <Text style={styles.title} numberOfLines={1}>{item.book.name}</Text>
           <Text style={styles.supplier}numberOfLines={1}>Products</Text>
           <View style={styles.row}>
-            <Text style={styles.price}>154.000 vnđ</Text>
+          <Text style={styles.price}>{parseInt(item.book.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
             <View style={{...styles.row, marginLeft: 30,}}>   
-              <Text style={styles.textRating}>Quantity: 1 </Text>  
+              <Text style={styles.textRating}>Quantity: {item.quantity} </Text>  
             </View>               
           </View>          
         </View>      

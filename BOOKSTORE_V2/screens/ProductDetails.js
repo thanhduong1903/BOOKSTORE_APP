@@ -6,12 +6,26 @@ import { useNavigation } from '@react-navigation/native'
 import {themeColors, themeSize} from '../constants/theme'
 import { ScrollView } from 'react-native-virtualized-view'
 import ReadMore from 'react-native-read-more-text'
+import { useDispatch } from 'react-redux' 
+import { addToCart } from '../Redux/CartSlice'
+import axios from 'axios'; 
+import API_CONFIG from '../config'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const CountDisplay = React.memo(({ count, increment, decrement }) => (
+  <View style={styles.rating}>
+    <TouchableOpacity onPress={decrement}>
+      <SimpleLineIcons name='minus' size={20}></SimpleLineIcons>
+    </TouchableOpacity>
 
-const CountDisplay = memo(({ count }) => (
-  <Text style={styles.textRating}> {" "}{count}{" "} </Text>
+    <Text style={styles.textRating}> {" "}{count}{" "} </Text>
+
+    <TouchableOpacity onPress={increment}>
+      <SimpleLineIcons name='plus' size={20}></SimpleLineIcons>
+    </TouchableOpacity>
+  </View>
 ));
 
-const ReadMoreText = ({ text }) => {
+const ReadMoreText =  React.memo(({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const renderTruncatedFooter = useCallback((handlePress) => (
@@ -36,23 +50,81 @@ const ReadMoreText = ({ text }) => {
       <Text style={styles.descText}> {text} </Text>
     </ReadMore>
   );
-};
+});
 
 const ProductDetails = ({ route }) => {
   const [count, setCount] = useState(1);
   const { item } = route.params;
   const [book,setbook] = useState("");
-  React.useEffect(() => {setbook(item)}, [item])
-  
-  const increment = useCallback(() => {
+  const navigation = useNavigation();
+  const increment = React.useCallback(() => {
     setCount(count => count + 1);
   }, []);
   
-  const decrement = useCallback(() => {
+  const decrement = React.useCallback(() => {
     setCount(count => (count > 1 ? count - 1 : count));
   }, []);
 
-  const navigation = useNavigation();
+  const handleGetBook = async () => {
+    try {
+      const url = `${API_CONFIG.HOST}${API_CONFIG.GETBOOK}${item.id}/`;
+      const response = await axios.get(url,{
+      });
+      if (response.data.status === 'success') {
+        setbook(response.data.book)
+      } else if (response.data.status === 'error') {
+        console.log('Failed get book');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+  const dispatch = useDispatch(); 
+  const handleAddToCart = async (book) => {
+    try {
+      const url = `${API_CONFIG.HOST}${API_CONFIG.ADDTOCART}`;
+      const response = await axios.post(url, {
+          id: book.id,
+          quantity: count
+      },{headers: {
+        'X-CSRFToken': await AsyncStorage.getItem('csrftoken'),
+        'Content-Type': 'application/json'
+      }});
+        
+      console.log(count)
+        if (response.data.status=='success') {
+            console.log(response.data.message);
+            const bookToAdd = {
+              book: book,
+              price: book.price,
+              pricesale: book.pricesale,
+              quantity: count,
+              total_price:count *  book.pricesale > 0 ? book.pricesale  : book.price 
+            };
+            dispatch(addToCart(bookToAdd)); // Cập nhật giỏ hàng trên ứng dụng
+            
+        } else {
+            console.log('Failed to add item to cart');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+  }
+
+  const handleBuyNow = async (book) =>{
+    handleAddToCart(book)
+    navigation.navigate('Cart')
+    setCount(1);
+  }
+  const handleAdd = async (book) =>{
+    handleAddToCart(book)
+    setCount(1);
+  }
+
+
+  React.useEffect(() => {handleGetBook()}, [])
   return (
     <ScrollView>
         <SafeAreaView style={styles.container}>
@@ -84,17 +156,7 @@ const ProductDetails = ({ route }) => {
             <Text style={styles.textRating}>  (4.9)</Text>
           </View>
 
-          <View style={styles.rating}>
-          <TouchableOpacity onPress={decrement}>
-            <SimpleLineIcons name='minus' size={20}></SimpleLineIcons>
-          </TouchableOpacity>
-
-          <CountDisplay count={count} />
-          
-          <TouchableOpacity onPress={increment}>
-            <SimpleLineIcons name='plus' size={20}></SimpleLineIcons>
-          </TouchableOpacity>
-          </View>
+          <CountDisplay count={count} increment={increment} decrement={decrement}/>
         </View>
 
         {/* Description */}
@@ -120,10 +182,10 @@ const ProductDetails = ({ route }) => {
 
         {/* Cart */}
         <View style={styles.cardRow}>
-          <TouchableOpacity onPress={()=>{}} style={styles.cartBtn}>
+          <TouchableOpacity onPress={()=>{handleBuyNow(book)}} style={styles.cartBtn}>
             <Text style={styles.cartTitle}>Buy now</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{}} style={styles.addCart}>
+          <TouchableOpacity onPress={()=>{handleAdd(book)}} style={styles.addCart}>
             <Fontisto name='shopping-bag' size={22} color={themeColors.lightWhite} style></Fontisto>
           </TouchableOpacity>
         </View> 

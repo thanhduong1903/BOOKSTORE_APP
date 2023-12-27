@@ -65,6 +65,7 @@ export const styles = StyleSheet.create({
     // zIndex:'999',
   },
   totalText:{
+    fontSize:18,
     color: themeColors.white,
   },
   checkout:{

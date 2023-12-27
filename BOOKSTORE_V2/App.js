@@ -11,7 +11,10 @@ import FirstLook from './components/auth/FirstLook';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Order from './screens/Order';
-
+import EditProfile from'./screens/EditProfile'
+import { Provider } from 'react-redux';
+import Store from './Redux/Store';
+import PaymentScreen from './components/order/Payment';
 export const Stack = createNativeStackNavigator();
 export default function App() {
   const [fontsLoaded] =  useFonts({
@@ -32,24 +35,26 @@ export default function App() {
   if(!fontsLoaded){
     return null;
   }
-
   return (
-    
-    <NavigationContainer>
-            <StatusBar 
-        barStyle = "light-content"
-      />
-      <Stack.Navigator>
-        <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Login' component={Login} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Register' component={Register} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Bottom Navigation' component={BottomTabNavigation} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Cart' component={Cart} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='ProductDetails' component={ProductDetails} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Order' component={Order} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Category' component={Category} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Search' component={Search} options={{headerShown: false}}></Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={Store}>
+      <NavigationContainer>
+              <StatusBar 
+          barStyle = "light-content"
+        />
+        <Stack.Navigator>
+          <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Login' component={Login} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Register' component={Register} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Bottom Navigation' component={BottomTabNavigation} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Cart' component={Cart} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='ProductDetails' component={ProductDetails} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Order' component={Order} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Category' component={Category} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='Search' component={Search} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='EditProfile' component={EditProfile} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='PaymentScreen' component={PaymentScreen} options={{headerShown: false}}></Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

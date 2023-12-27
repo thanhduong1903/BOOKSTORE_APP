@@ -3,28 +3,31 @@ import { themeColors, themeSize } from "../../constants/theme";
 
 export const styles = StyleSheet.create({
   container:{
-    width: "65%",
-    height: 280,
-    marginEnd: 5,
+    width: 190,
+    height: 300,
+    // marginEnd: 5,
+    margin: 8,
     borderRadius: 15,
     backgroundColor: themeColors.secondary,    
-    margin: 12,
     justifyContent:'center',
   },
   imageContainer:{
-    flex: 1,
-    width: '94%',
+    flex: 3,
+    width: 180,
+    height: 300,  
     margin: 5,
+    justifyContent: 'center',    
     borderBottomWidth: 1,
     borderColor: themeColors.black,
     overflow:'hidden',
   },
   image:{
     aspectRatio: 1,
-    resizeMode:'cover',    
+    resizeMode:'cover',   
     borderRadius: 10,
   },
   details:{
+    flex: 1,
     padding: 12,
   },
   title:{
