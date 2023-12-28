@@ -15,6 +15,7 @@ import EditProfile from'./screens/EditProfile'
 import { Provider } from 'react-redux';
 import Store from './Redux/Store';
 import PaymentScreen from './components/order/Payment';
+import WelcomLogin from './components/auth/WelcomLogin';
 export const Stack = createNativeStackNavigator();
 export default function App() {
   const [fontsLoaded] =  useFonts({
@@ -42,9 +43,11 @@ export default function App() {
           barStyle = "light-content"
         />
         <Stack.Navigator>
+          <Stack.Screen name='WelcomLogin' component={WelcomLogin} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='First Look' component={FirstLook} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='Register' component={Register} options={{headerShown: false}}></Stack.Screen>
+          
           <Stack.Screen name='Bottom Navigation' component={BottomTabNavigation} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='Cart' component={Cart} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='ProductDetails' component={ProductDetails} options={{headerShown: false}}></Stack.Screen>
