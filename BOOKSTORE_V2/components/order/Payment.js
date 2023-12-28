@@ -15,7 +15,7 @@ function PaymentScreen({ route }) {
                 webviewRef.current.reload();
                 dispatch(clearCart());
             }
-        }, 10000); // Thời gian chờ là 10 giây
+        },1000); // Thời gian chờ là 10 giây
         return () => {
             clearTimeout(timer);
         };

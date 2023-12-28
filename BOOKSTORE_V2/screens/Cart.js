@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
@@ -25,6 +25,15 @@ const TotalInfo = React.memo(() => {
 
 export default function Cart() {
   const navigation = useNavigation();
+  const totalAmount = useSelector((state) => state.cart.total);
+
+  const handlePress = () => {
+    if (totalAmount > 0) {
+      navigation.navigate('Order');
+    } else {
+      Alert.alert('Your cart is empty');
+    }
+  };
 
   return (
     <SafeAreaView style ={styles.container}>      
@@ -39,7 +48,7 @@ export default function Cart() {
   
         <View style={styles.row}>
           <Text style={styles.totalText}>Delivery: 30.000</Text>
-          <TouchableOpacity onPress={()=>navigation.navigate('Order')} style={styles.checkout}>
+          <TouchableOpacity onPress={handlePress} style={styles.checkout}>
             <View style={{flexDirection:'row', alignItems:'center'}}>
             <MaterialIcons name='payment' size={20} color={themeColors.white}></MaterialIcons>
               <Text style={styles.totalText}>  Check out</Text>              
