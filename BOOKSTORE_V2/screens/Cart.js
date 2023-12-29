@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {Ionicons, MaterialIcons} from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { styles } from './cart.styles';
 import { themeColors } from '../constants/theme';
 import CartItemRaw from '../components/cart/CartItemRaw';
@@ -19,13 +19,14 @@ const TotalInfo = React.memo(() => {
     <View style={styles.row}>
       <Text style={styles.totalText}>Total item: {totalQuantity}</Text>
       <Text style={styles.totalText}>Total amount: {parseInt(totalAmount).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })} </Text>
-    </View> 
+    </View>
   );
 });
 
 export default function Cart() {
   const navigation = useNavigation();
   const totalAmount = useSelector((state) => state.cart.total);
+<<<<<<< HEAD
 
   const handlePress = () => {
     if (totalAmount > 0) {
@@ -35,27 +36,47 @@ export default function Cart() {
     }
   };
 
+=======
+>>>>>>> feature/cart
   return (
-    <SafeAreaView style ={styles.container}>      
-      <AppBarWrapper title = "CART"></AppBarWrapper>
-      
-      <ScrollView style={{height: '85%'}}>
-        <CartItemRaw/>
-      </ScrollView>  
+    <SafeAreaView style={styles.container}>
+      <AppBarWrapper title="CART"></AppBarWrapper>
+
+      <ScrollView style={{ height: '85%' }}>
+        <CartItemRaw />
+      </ScrollView>
       <View style={styles.totalContainer}>
 
-          <TotalInfo />
-  
+        <TotalInfo />
+
         <View style={styles.row}>
           <Text style={styles.totalText}>Delivery: 30.000</Text>
+<<<<<<< HEAD
           <TouchableOpacity onPress={handlePress} style={styles.checkout}>
             <View style={{flexDirection:'row', alignItems:'center'}}>
             <MaterialIcons name='payment' size={20} color={themeColors.white}></MaterialIcons>
               <Text style={styles.totalText}>  Check out</Text>              
             </View>            
+=======
+          <TouchableOpacity
+            onPress={() => {
+             
+              if (totalAmount > 0) {
+                navigation.navigate('Order');
+              } else {
+                alert('Total amount must be greater than 0');
+              }
+            }}
+            style={styles.checkout}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <MaterialIcons name='payment' size={20} color={themeColors.white}></MaterialIcons>
+              <Text style={styles.totalText}>  Check out</Text>
+            </View>
+>>>>>>> feature/cart
           </TouchableOpacity>
-        </View>       
-      </View>      
+        </View>
+      </View>
     </SafeAreaView>
   )
 }

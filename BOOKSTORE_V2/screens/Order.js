@@ -51,7 +51,18 @@ export default function Order() {
   };
 
   const handleOrder = async () => {
+  
+    if (totalAmount < 1) {
+      alert('Total amount must be greater than 0');
+      navigation.goBack()
+      return;
+    } 
+    
     try {
+      if (!paymentMethod) {
+        alert('Please provide complete information.');
+        return;
+      }
       const url = `${API_CONFIG.HOST}${API_CONFIG.ORDER}`;
       const response = await axios.post(url, {
         user_id: userData.id,
@@ -64,11 +75,15 @@ export default function Order() {
 
       if (response.data.status === 'success') {
         // Handle success
-        console.log(response.data.status);
-      
+
         if (paymentMethod === 'Chuyển khoản') {
           console.log(response.data.payment_url)
           navigation.navigate('PaymentScreen', { paymentUrl:response.data.payment_url });
+        }
+        else{
+          alert('Order Success')
+          dispatch(clearCart());
+          console.log(response.data.status);
         }
 
       } else if (response.data.status === 'error') {
