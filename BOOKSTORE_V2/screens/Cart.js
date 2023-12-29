@@ -26,18 +26,6 @@ const TotalInfo = React.memo(() => {
 export default function Cart() {
   const navigation = useNavigation();
   const totalAmount = useSelector((state) => state.cart.total);
-<<<<<<< HEAD
-
-  const handlePress = () => {
-    if (totalAmount > 0) {
-      navigation.navigate('Order');
-    } else {
-      Alert.alert('Your cart is empty');
-    }
-  };
-
-=======
->>>>>>> feature/cart
   return (
     <SafeAreaView style={styles.container}>
       <AppBarWrapper title="CART"></AppBarWrapper>
@@ -51,13 +39,6 @@ export default function Cart() {
 
         <View style={styles.row}>
           <Text style={styles.totalText}>Delivery: 30.000</Text>
-<<<<<<< HEAD
-          <TouchableOpacity onPress={handlePress} style={styles.checkout}>
-            <View style={{flexDirection:'row', alignItems:'center'}}>
-            <MaterialIcons name='payment' size={20} color={themeColors.white}></MaterialIcons>
-              <Text style={styles.totalText}>  Check out</Text>              
-            </View>            
-=======
           <TouchableOpacity
             onPress={() => {
              
@@ -73,7 +54,6 @@ export default function Cart() {
               <MaterialIcons name='payment' size={20} color={themeColors.white}></MaterialIcons>
               <Text style={styles.totalText}>  Check out</Text>
             </View>
->>>>>>> feature/cart
           </TouchableOpacity>
         </View>
       </View>

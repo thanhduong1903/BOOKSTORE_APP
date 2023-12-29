@@ -72,29 +72,29 @@ React.useEffect(() => {
       <View style={styles.header}>
         <View style={styles.imgContainer}>
           <Image style={styles.avatar} source={{uri: 'https://img.freepik.com/free-photo/3d-illustration-teenager-with-funny-face-glasses_1142-50955.jpg?t=st=1702740564~exp=1702744164~hmac=bb277f08e5038ab61d7593e6c5d4956cc14cc2ec077467ab2901a967f147bdd8&w=826'}}></Image>
-          <Text style={styles.name}>Matthew</Text>
+          <Text style={styles.name}>{userData.first_name} {userData.last_name}</Text>
         </View>     
       </View>
       <View style={styles.body}>
         <View style={styles.row}>
           <Text style={styles.text}>First name: </Text>
-          <Text style={styles.input}>{userData.first_name}</Text>
+          <Text style={styles.inputStyleText}>{userData.first_name}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Last name: </Text>
-          <Text style={styles.input}>{userData.last_name}</Text>
+          <Text style={styles.inputStyleText}>{userData.last_name}</Text>
         </View>  
         <View style={styles.row}>
           <Text style={styles.text}>Phone </Text>
-          <Text style={styles.input}>{addressData.phone}</Text>
+          <Text style={styles.inputStyleText}>{addressData.phone}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Mail: </Text>
-          <Text style={styles.input}>{userData.email}</Text>
+          <Text style={styles.inputStyleText}>{userData.email}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Address: </Text>
-          <Text style={styles.input}>{addressData.address}, {addressData.district}, {addressData.city}</Text>
+          <Text style={styles.inputStyleText} >{addressData.address}, {addressData.district}, {addressData.city}</Text>
         </View>
       </View>
       <View style={styles.footer}>

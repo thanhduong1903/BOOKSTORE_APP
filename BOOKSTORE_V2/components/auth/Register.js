@@ -33,16 +33,23 @@ export default function Register() {
   }, [city, district]); 
   const handleRegister = async () => {
     try {
-      console.log(username)
-      console.log(firstname)
-      console.log(lastname)
-      console.log(email)
-      console.log(phone)
-      console.log(address)
-      console.log(city)
-      console.log(district)
-      console.log(password)
-      console.log(confirmpassword)
+      if (!firstname || !lastname || !email || !phone || !address || !district || !city||!password||!confirmpassword) {
+        alert('Please provide complete information.');
+        return;
+      }else{
+        console.log(username)
+        console.log(firstname)
+        console.log(lastname)
+        console.log(email)
+        console.log(phone)
+        console.log(address)
+        console.log(city)
+        console.log(district)
+        console.log(password)
+        console.log(confirmpassword)
+      }
+      
+
 
       const userData = {
         first_name: firstname,
@@ -63,8 +70,8 @@ export default function Register() {
         email: email,
         phone: phone,
         address: address,
-        city: city,
-        district: district,
+        city: city.value,
+        district: district.value,
         password1: password,
         password2: confirmpassword
       });
@@ -72,10 +79,10 @@ export default function Register() {
         console.log(response.data.message);
         Alert.alert(response.data.message);
         navigation.navigate('Login');
-      } else if (response.data.status === 'error') {
+      } else if (response.data.status === 'warning') {
         Alert.alert(response.data.error);
-        console.error(response.data.message);
-        console.error(response.data.error);
+        console.info(response.data.field);
+        console.info(response.data.error);
       }
     } catch (error) {
       console.log(error);
@@ -136,7 +143,15 @@ export default function Register() {
               value={phone}
               ></TextInput>
             </View>
-            
+            <View style={styles.inputStyle}>
+              <Ionicons style={styles.inputStyleIcon} name='mail-outline' size={20}></Ionicons>
+              <TextInput
+                style={styles.inputStyleText}
+                placeholder='Enter your Email'
+                onChangeText={text => setEmail(text)}
+                value={email}
+              ></TextInput>
+            </View>
             <View style={styles.inputStyle}>
               <Ionicons style={styles.inputStyleIcon} name='location-outline' size={20}></Ionicons>
               <TextInput style={styles.inputStyleText} 
@@ -165,7 +180,7 @@ export default function Register() {
                   searchPlaceholder="Search..."
                   value={city}
                   onChange={item => {
-                    setCity(item.value);
+                    setCity(item);
                   }}
                 ></Dropdown>
               </View>
@@ -189,22 +204,14 @@ export default function Register() {
                   searchPlaceholder="Search..."
                   value={district}
                   onChange={item => {
-                    setDisttrict(item.value);
+                    setDisttrict(item);
                   }}
                 ></Dropdown>
               </View>
             </View>
 
 
-            <View style={styles.inputStyle}>
-              <Ionicons style={styles.inputStyleIcon} name='mail-outline' size={20}></Ionicons>
-              <TextInput
-                style={styles.inputStyleText}
-                placeholder='Enter your Email'
-                onChangeText={text => setEmail(text)}
-                value={email}
-              ></TextInput>
-            </View>
+
 
             <View style={styles.inputStyle}>
               <Ionicons style={styles.inputStyleIcon} name='lock-closed-outline' size={20}></Ionicons>

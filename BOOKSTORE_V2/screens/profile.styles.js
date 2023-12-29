@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.white,
   },
   row:{
+    flexWrap: 'nowrap',
     flexDirection: 'row',
     marginVertical: 10,
   },
@@ -23,7 +24,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+  inputStyleText:{
+    fontSize:16,
+    fontWeight: 'normal',
+    width: '75%',
+    paddingHorizontal: 10,
+  }, 
   avatar:{
     width: 100,
     height: 100,
@@ -43,7 +49,8 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.white,
   },
   text:{
-    width: 120,
+    fontSize:16,
+    width: "25%",
   },
   footer:{
     flex: 1,
