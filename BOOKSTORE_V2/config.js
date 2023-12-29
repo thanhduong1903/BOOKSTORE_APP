@@ -1,13 +1,13 @@
 
  export default  API_CONFIG = {
-    // HOST: 'http://192.168.2.112:8000/', // Thay thế bằng địa chỉ host của API 
-    HOST: 'http://192.168.1.38:8081/', // Thay thế bằng địa chỉ host của API 
+
+    HOST: 'http://192.168.1.6:8000/', // Thay thế bằng địa chỉ host của API 
     
     LOGIN: 'user/login/', 
     LOGOUT:'user/logout/',
     REGISTER:'user/register/',
     PROFILE:'user/profile/',
-
+    UPDATE_PROFILE:'user/update-profile/',
 
     // Store
     CATEGORIES:'store/categories/',
@@ -23,7 +23,7 @@
     //Cart
     ADDTOCART:'cart/add/',
     UPDATECART:'cart/update/',
-    DELETECART:'cart/delete/',
+    DELETECART:'cart/remove/',
     GETCART:'cart/get/',
   };
   
