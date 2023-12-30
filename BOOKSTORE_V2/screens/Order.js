@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, Alert,TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
@@ -76,14 +76,25 @@ export default function Order() {
       if (response.data.status === 'success') {
         // Handle success
 
-        if (paymentMethod === 'Chuyển khoản') {
+        if (paymentMethod === 'Card') {
           console.log(response.data.payment_url)
           navigation.navigate('PaymentScreen', { paymentUrl:response.data.payment_url });
         }
         else{
-          alert('Order Success')
-          dispatch(clearCart());
-          console.log(response.data.status);
+          Alert.alert(
+            "Order Success",
+            "Your order has been placed successfully.",
+            [
+              {
+                text: "OK",
+                onPress: () => {
+                  dispatch(clearCart('Bottom Navigation'));
+                  console.log(response.data.status);
+                  navigation.navigate('Bottom Navigation');
+                }
+              }
+            ]
+          );
         }
 
       } else if (response.data.status === 'error') {
@@ -101,7 +112,7 @@ export default function Order() {
 
     } else if (method === 'Card') {
 
-      setPaymentMethod('Chuyển khoản')
+      setPaymentMethod('Card')
     }
   }
   React.useEffect(() => {
@@ -162,6 +173,7 @@ export default function Order() {
                 <Text style={styles.totalText}>  Order now</Text>
               </View>
             </TouchableOpacity>
+
           </View>
         </View>
       </ScrollView>

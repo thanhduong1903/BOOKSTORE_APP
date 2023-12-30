@@ -144,9 +144,11 @@ const ProductDetails = ({ route }) => {
         {/* Top details */}
         <View style={styles.titleRow}>
           <Text style={styles.title}>{book.name}</Text>
+
           <View style={styles.priceWrapper}>
           <Text style={styles.price}>{parseInt(book.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
           </View>
+
         </View>
 
         {/* Bottom details */}
@@ -170,7 +172,7 @@ const ProductDetails = ({ route }) => {
           <View style={styles.location}>
             <View style={styles.flexDirec}>
               <Ionicons name='location-outline' size={20}></Ionicons>
-              <Text> Ho chi minh city</Text>
+              <Text>Bình Dương</Text>
             </View>
             <View style={styles.flexDirec}>
               <MaterialCommunityIcons name='truck-delivery-outline' size={20}></MaterialCommunityIcons>

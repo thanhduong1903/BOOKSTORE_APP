@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontFamily:'bold',
     fontSize: themeSize.large,
-
+    width:'70%'
   },
   priceWrapper:{
     backgroundColor: themeColors.primary,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontFamily:'bold',
     color: themeColors.white,
-    fontSize: themeSize.small2,
+    fontSize: themeSize.medium,
   },
   ratingRow:{
     paddingHorizontal: 5,

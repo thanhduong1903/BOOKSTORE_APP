@@ -12,7 +12,9 @@ export default function OrderItem({item}) {
           <Image style={styles.image} source={{uri: item.book.image}}></Image>
         </View>
         <View style={styles.details}>          
-          <Text style={styles.title} numberOfLines={1}>{item.book.name}</Text>
+           <Text style={styles.title} numberOfLines={1}>
+            {item.book.name.length > 25 ? item.book.name.substring(0, 22) + "..." : item.book.name}
+          </Text>
           <Text style={styles.supplier}numberOfLines={1}>Products</Text>
           <View style={styles.row}>
           <Text style={styles.price}>{parseInt(item.book.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
