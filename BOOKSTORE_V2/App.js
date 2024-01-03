@@ -15,6 +15,7 @@ import EditProfile from'./screens/EditProfile'
 import { Provider } from 'react-redux';
 import Store from './Redux/Store';
 import PaymentScreen from './components/order/Payment';
+import ResetPassWord from './components/auth/ResetPassWord';
 import WelcomLogin from './components/auth/WelcomLogin';
 export const Stack = createNativeStackNavigator();
 export default function App() {
@@ -56,6 +57,8 @@ export default function App() {
           <Stack.Screen name='Search' component={Search} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='EditProfile' component={EditProfile} options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen name='PaymentScreen' component={PaymentScreen} options={{headerShown: false}}></Stack.Screen>
+          <Stack.Screen name='ResetPassWord' component={ResetPassWord} options={{headerShown: false}}></Stack.Screen>
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

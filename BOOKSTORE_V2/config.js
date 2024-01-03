@@ -7,6 +7,7 @@
     LOGOUT:'user/logout/',
     REGISTER:'user/register/',
     PROFILE:'user/profile/',
+    RESPASSWORD:'user/reset-password',
     UPDATE_PROFILE:'user/update-profile/',
 
     // Store

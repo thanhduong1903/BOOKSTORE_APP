@@ -63,7 +63,8 @@ export default function Login() {
     }
   };
 
-
+  const rspUrl =`${API_CONFIG.HOST}${API_CONFIG.RESPASSWORD}`
+  console.log(rspUrl)
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -104,7 +105,7 @@ export default function Login() {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => {  navigation.navigate('ResetPassWord', { Url: rspUrl}); }}>
             <View style={styles.forgotStyle}>
               <Text style={styles.forgotText}>Forgot password?</Text>
             </View>

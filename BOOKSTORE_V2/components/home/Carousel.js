@@ -12,7 +12,11 @@ export default function Carousel (){
   ]
   return (
     <View style={styles.carouselContainer}>
-      <SliderBox images={slides} dotColor={themeColors.textColor} interactiveDotColor = {themeColors.black} ImageComponentStyle = {{borderRadius: 20, width: '90%', marginTop: 15,}} autoplay circleLoop></SliderBox>
+      <SliderBox images={slides}
+       dotColor={themeColors.textColor} 
+       interactiveDotColor = {themeColors.black}
+       imageComponentStyle = {{borderRadius: 20, width: '90%', marginTop: 15,}} 
+       autoplay circleLoop/>
     </View>
   )
 }

@@ -1,21 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import { WebView } from 'react-native-webview';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../../Redux/CartSlice';
 
-
-function PaymentScreen({ route }) {
-    const { paymentUrl } = route.params;
-    const dispatch = useDispatch(); 
+function ResetPassWord({ route }) {
+    const { Url } = route.params;
     const webviewRef = useRef(null);
     let timer;   
     useEffect(() => {
         timer = setTimeout(() => {
             if (webviewRef.current) {
                 webviewRef.current.reload();
-                dispatch(clearCart());
             }
-        }, 10000);
+        }, 100); 
         return () => {
             clearTimeout(timer);
         };
@@ -25,11 +20,11 @@ function PaymentScreen({ route }) {
         <WebView
             ref={webviewRef}
             originWhitelist={['*']}
-            source={{ uri: paymentUrl }}
+            source={{ uri: Url }}
             style={{ marginTop: 20 }}
             javaScriptEnabled={true}
         />
     );
 }
 
-export default PaymentScreen;
+export default ResetPassWord;
