@@ -6,9 +6,9 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.white,
   },
   row:{
-    flexWrap: 'nowrap',
     flexDirection: 'row',
     marginVertical: 10,
+    alignItems: 'center',
   },
   header:{
     flex: 1,
@@ -24,12 +24,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  inputStyleText:{
-    fontSize:16,
-    fontWeight: 'normal',
-    width: '75%',
-    paddingHorizontal: 10,
-  }, 
+
   avatar:{
     width: 100,
     height: 100,
@@ -41,25 +36,26 @@ export const styles = StyleSheet.create({
     color: themeColors.primary,
   },
   body:{
-    flex: 2,
+    flex: 1,
     width: '95%',
     marginHorizontal: 10,
     marginVertical: 10,
     marginLeft: 30,
-    backgroundColor: themeColors.white,
+    
   },
   text:{
     fontSize:16,
-    width: "25%",
+    width: 120,
   },
   footer:{
     flex: 1,
     width: '95%',
-    // backgroundColor: themeColors.black,
+    backgroundColor: themeColors.white,
     marginHorizontal: 10,
     alignItems:'center',
-    justifyContent:'center',
-    flexDirection:'row'
+    justifyContent:"center",
+    flexDirection:'row',
+    padding:20,
   },
   edit:{
     flexDirection: 'row',
@@ -70,12 +66,54 @@ export const styles = StyleSheet.create({
     borderColor: themeColors.primary,
     justifyContent: 'center',
     alignItems: "center",
-    marginHorizontal: 10,
-    marginBottom: 100,
   },
   editText:{
     color: themeColors.primary,
     marginRight: 5,
   },
-
+  inputStyle:{
+    flexDirection:'row',
+    borderWidth: 1,
+    borderRadius: themeSize.small2,
+    width: '60%',
+    height: 45,
+    alignItems: "center",
+    borderColor: themeColors.primary,
+    marginTop: 15,
+  },
+  inputStyleIcon:{
+    margin: 8,
+    color: themeColors.primary,
+  },
+  inputStyleText:{
+    paddingLeft:10,
+    color: themeColors.black,
+    fontSize: themeSize.medium,
+    width: '100%',
+    paddingHorizontal: 10,
+  }, 
+  
+  dropdown: {
+    margin: 0,
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
 });

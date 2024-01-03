@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     height: 130,
     marginVertical: 10,
     borderRadius: 15,
-    backgroundColor: themeColors.white,   
+    backgroundColor: themeColors.lightWhite,   
     shadowColor: '#171717',
     shadowOffset: {width: 2, height: 4},
     shadowOpacity: 0.2,
@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
   },
   imageContainer:{
     flex: 1,
-    width: 170,    
+    width: 200,   
+    height:"100%", 
     overflow:'hidden',
     marginLeft: 5,
   },
   image:{
+    width: 160,  
     aspectRatio: 1,
     resizeMode: 'stretch',    
     borderRadius: 10,

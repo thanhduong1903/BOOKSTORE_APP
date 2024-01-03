@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
   title:{
     paddingHorizontal: 5,
     fontFamily:'bold',
-    fontSize: themeSize.medium,
-
+    fontSize: themeSize.large,
+    width:'70%'
   },
   priceWrapper:{
     backgroundColor: themeColors.primary,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontFamily:'bold',
     color: themeColors.white,
-    fontSize: themeSize.small2,
+    fontSize: themeSize.medium,
   },
   ratingRow:{
     paddingHorizontal: 5,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   descText:{
     fontFamily: 'light',
-    fontSize: themeSize.xSmall,
+    fontSize: themeSize.medium,
     textAlign: 'justify',
     marginBottom: 10,
   },

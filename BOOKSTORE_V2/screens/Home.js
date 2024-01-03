@@ -13,7 +13,20 @@ import MarginBottom from '../constants/MarginBottom';
 import { themeColors } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
-// import {ViewPropTypes} from 'deprecated-react-native-prop-types'
+import { useSelector } from 'react-redux'; 
+import { getTotalQuantity } from '../Redux/CartSlice'
+
+const CartCount = React.memo(() => {
+  const totalQuantity = useSelector(getTotalQuantity);
+
+  return (
+    <View style={styles.cartCount}>
+      <Text style={styles.cartNum}>{totalQuantity}</Text> 
+    </View>
+  );
+  
+});
+
 export default function Home() {
   const navigation = useNavigation();
   return (
@@ -21,11 +34,9 @@ export default function Home() {
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons color={'transparent'} name='location-outline' size={24}></Ionicons>
-          <Text style={styles.locationText}>BOOKS SHOP </Text>
+          <Text style={styles.locationText}> BOOKS SHOP </Text>
           <View style={styles.flexEnd}>
-            <View style={styles.cartCount}>
-              <Text style={styles.cartNum}>3</Text>
-            </View>
+          <CartCount />
             <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
               <Fontisto color={themeColors.primary} name='shopping-bag' size={24}></Fontisto>
             </TouchableOpacity>            
@@ -35,11 +46,11 @@ export default function Home() {
       <ScrollView>
         <Welcome></Welcome>
         <Carousel></Carousel>
-        <CategoryMenu></CategoryMenu>
+        <CategoryMenu/>
         <Headings></Headings>
-        <ProductRaw></ProductRaw>
-        <BestSeller></BestSeller>
-        <MarginBottom></MarginBottom>
+        <ProductRaw/>
+        <BestSeller/>
+        <MarginBottom/>
       </ScrollView>
     </SafeAreaView>
   )

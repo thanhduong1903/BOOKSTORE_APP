@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     overflow:'hidden',
   },
   image:{
+    width: 185,
+    height: 280,
     aspectRatio: 1,
     resizeMode:'cover',    
     borderRadius: 10,
