@@ -1,13 +1,16 @@
-import {Text, View, SafeAreaView, TextInput, Image, TouchableOpacity, Pressable } from 'react-native'
+import {Text, View, SafeAreaView, TextInput, Image, TouchableOpacity, Pressable ,ScrollView} from 'react-native'
 import React,{useState} from 'react'
 import { styles } from './editProfile.style';
 import {AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import { themeColors, themeSize } from '../constants/theme';
 import AppBarWrapper from '../constants/AppBarWrapper';
 import { Dropdown } from 'react-native-element-dropdown';
-import { ScrollView } from 'react-native-virtualized-view';
+import {  } from 'react-native-virtualized-view';
 import axios from 'axios';
 import API_CONFIG from '../config'
+
+
+
 export default function EditProfile () {
 
   const [email, setEmail] = React.useState('');
@@ -81,40 +84,61 @@ export default function EditProfile () {
       console.error(error);
     }
   };
+
   React.useEffect(() => {
     console.log(`City is now: ${city.value}`);
     console.log(`District is now: ${district.value}`);
   }, [city, district]); 
   React.useEffect(() => {
+    console.log('get')
     handleGetProfile()
+  }, []);
+  const handleFirstnameChange = React.useCallback((text) => {
+    setFirstname(text);
   }, []);
   return (
     <SafeAreaView style={styles.container}>
+
       <AppBarWrapper title="EDIT PROFILE"></AppBarWrapper>
+   
       <ScrollView>
+      <View>
       <View style={styles.header}>
         <View style={styles.imgContainer}>
           <Image style={styles.avatar} source={{uri: 'https://img.freepik.com/free-photo/3d-illustration-teenager-with-funny-face-glasses_1142-50955.jpg?t=st=1702740564~exp=1702744164~hmac=bb277f08e5038ab61d7593e6c5d4956cc14cc2ec077467ab2901a967f147bdd8&w=826'}}></Image>
           <Text style={styles.name}>{firstname} {lastname} </Text>
         </View>     
       </View>
-      
+
       <View style={styles.body}>
         <View style={styles.row}>
           <Text style={styles.text}>First name: </Text>
-          <TextInput style={styles.input} value={firstname} onChangeText={text => setFirstname(text)} />
+          <View style={styles.inputStyle}>
+          <TextInput style={styles.inputStyleText}              
+                onChangeText={text => setFirstname(text)}
+            value={firstname} ></TextInput>
+          </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Last name: </Text>
-          <TextInput style={styles.input} value={lastname} onChangeText={text => setLastname(text)} />
+          <View style={styles.inputStyle}>  
+          <TextInput style={styles.inputStyleText} value={lastname} onChangeText={text => setLastname(text)} />
+          </View>
+
+        
         </View>          
         <View style={styles.row}>
           <Text style={styles.text}>Phone: </Text>
-          <TextInput style={styles.input} value={phone} onChangeText={text => setPhone(text)} />
+          <View style={styles.inputStyle}>
+            <TextInput style={styles.inputStyleText} value={phone} onChangeText={text => setPhone(text)} />
+          </View>
+
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Email: </Text>
-          <TextInput style={styles.input} value={email} onChangeText={text => setEmail(text)} />
+          <View style={styles.inputStyle}>
+            <TextInput style={styles.inputStyleText} value={email} onChangeText={text => setEmail(text)} />
+          </View>
         </View>
         {/* <View style={styles.row}>
           <Text style={styles.text}>Change password: </Text>
@@ -126,7 +150,9 @@ export default function EditProfile () {
         </View> */}
         <View style={styles.row}>
           <Text style={styles.text}>Address: </Text>
-          <TextInput style={styles.input} value={address}  onChangeText={text => setAddress(text)} />
+          <View style={styles.inputStyle}>
+          <TextInput style={styles.inputStyleText} value={address}  onChangeText={text => setAddress(text)} />
+          </View>
         </View>
         
         <View style={styles.row}>
@@ -184,10 +210,11 @@ export default function EditProfile () {
         <TouchableOpacity onPress={handleUpdateProfile}>
           <View style={styles.edit}>
             <Text  style={styles.editText}>Save</Text>
-            <AntDesign name='save' color={themeColors.primary} size={22}></AntDesign>
+            <AntDesign name='save' color={themeColors.primary} size={24}></AntDesign>
           </View>          
         </TouchableOpacity>   
 
+      </View>
       </View>
       </ScrollView>
     </SafeAreaView>

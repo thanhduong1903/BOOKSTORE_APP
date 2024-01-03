@@ -44,6 +44,7 @@ export const styles = StyleSheet.create({
     
   },
   text:{
+    fontSize:16,
     width: 120,
   },
   footer:{
@@ -53,7 +54,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10,
     alignItems:'center',
     justifyContent:"center",
-    flexDirection:'row'
+    flexDirection:'row',
+    padding:20,
   },
   edit:{
     flexDirection: 'row',
@@ -72,9 +74,9 @@ export const styles = StyleSheet.create({
   inputStyle:{
     flexDirection:'row',
     borderWidth: 1,
-    borderRadius: themeSize.small1,
-    width: '90%',
-    height: 50,
+    borderRadius: themeSize.small2,
+    width: '60%',
+    height: 45,
     alignItems: "center",
     borderColor: themeColors.primary,
     marginTop: 15,
@@ -84,11 +86,10 @@ export const styles = StyleSheet.create({
     color: themeColors.primary,
   },
   inputStyleText:{
-    fontFamily: 'regular',
-    fontWeight: 'bold',
-    color: themeColors.primary,
+    paddingLeft:10,
+    color: themeColors.black,
     fontSize: themeSize.medium,
-    width: '55%',
+    width: '100%',
     paddingHorizontal: 10,
   }, 
   

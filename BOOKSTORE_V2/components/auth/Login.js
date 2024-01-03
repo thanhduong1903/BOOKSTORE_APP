@@ -64,7 +64,7 @@ export default function Login() {
   };
 
   const rspUrl =`${API_CONFIG.HOST}${API_CONFIG.RESPASSWORD}`
-  console.log(rspUrl)
+  
   return (
     <SafeAreaView>
       <View style={styles.container}>

@@ -117,10 +117,12 @@ const ProductDetails = ({ route }) => {
     handleAddToCart(book)
     navigation.navigate('Cart')
     setCount(1);
+    alert('Add product successfully')
   }
   const handleAdd = async (book) =>{
     handleAddToCart(book)
     setCount(1);
+    alert('Add product successfully')
   }
 
 

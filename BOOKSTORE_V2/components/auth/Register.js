@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Dropdown } from 'react-native-element-dropdown';
 import API_CONFIG from '../../config'
 import axios from 'axios';
+
+
 export default function Register() {
 
   const navigation = useNavigation();
@@ -99,6 +101,7 @@ export default function Register() {
   return (
     <SafeAreaView>
       <ScrollView>
+        
         <View style={styles.container}>
           <View style={styles.topView}>
             <Image style={styles.topViewLogo} source={require('../../assets/images/logo.png')}></Image>
@@ -254,6 +257,7 @@ export default function Register() {
 
           </View>
         </View>
+
       </ScrollView>
     </SafeAreaView>
   )
